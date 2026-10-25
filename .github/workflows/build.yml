@@ -42,7 +42,7 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build Android Package
-        run: mvn gluonfx:build gluonfx:package -Dgluonfx.target=android
+  run: mvn -e -B gluonfx:build gluonfx:package -Dgluonfx.target=android
 
       - name: Upload APK Artifact
         uses: actions/upload-artifact@v4
