@@ -13,6 +13,11 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
+      - name: Install Linux Build Dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -r -y build-essential libasound2-dev libavcodec-dev libavformat-dev libavutil-dev libgl1-mesa-dev libgles2-mesa-dev libgtk-3-dev libpango1.0-dev libswscale-dev libx11-dev libext6 libxrender-dev libxtst-dev patchelf
+
       - name: Setup GraalVM JDK 21
         uses: graalvm/setup-graalvm@v1
         with:
@@ -21,7 +26,7 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build Android Package
-        run: mvn gluonfx:package -Dgluonfx.target=android
+        run: mvn gluonfx:build gluonfx:package -Dgluonfx.target=android
 
       - name: Upload APK Artifact
         uses: actions/upload-artifact@v4
