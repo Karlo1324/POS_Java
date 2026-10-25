@@ -44,11 +44,10 @@ jobs:
       - name: Build Android Package
   run: mvn -e -B gluonfx:build gluonfx:package -Dgluonfx.target=android
 
-      - name: Upload APK Artifact
+            - name: Upload APK Artifact
         uses: actions/upload-artifact@v4
         with:
           name: sari-store-pos-apk
           path: |
             target/gluonfx/**/*.apk
           if-no-files-found: error
-
