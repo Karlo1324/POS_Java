@@ -21,11 +21,10 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build Android Package
-        working-directory: sari-store-pos
         run: mvn gluonfx:package -Dgluonfx.target=android
 
       - name: Upload APK Artifact
         uses: actions/upload-artifact@v4
         with:
           name: sari-store-pos-apk
-          path: sari-store-pos/target/gluonfx/aarch64-android/gcloud/*.apk
+          path: target/gluonfx/aarch64-android/gcloud/*.apk
